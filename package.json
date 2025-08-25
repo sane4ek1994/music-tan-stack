@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "api-gen": "pnpm openapi-typescript https://musicfun.it-incubator.app/api-json -o src/shared/schema.ts --root-types"
+    "api-gen": "pnpm openapi-typescript https://musicfun.it-incubator.app/api-json -o src/shared/api/schema.ts --root-types"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.85.5",
