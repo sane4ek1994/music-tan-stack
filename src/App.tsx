@@ -1,31 +1,35 @@
 import './App.css'
 import {useQuery} from "@tanstack/react-query";
+import {client} from "./shared/api/client.ts";
+import {useEffect, useState} from "react";
 
 function App() {
+    const [isVisible, setIsVisible] = useState(true)
 
-    // useEffect(() => {
-    //     (async function() {
-    //       const response = await client.GET("/playlists")
-    //         const data = response.data
-    //
-    //         console.log(data.data.map((playlist) => playlist.attributes.))
-    //     })()
-    // }, []);
-
-    const query = useQuery({
-        queryKey: ["playlists"],
-        queryFn: () => 100
-    })
-
-
-    console.log(query.data)
-
+    useEffect(() => {
+        setInterval(() => {
+            setIsVisible(prev => !prev)
+        }, 10000)
+    }, [])
 
   return (
     <>
-      <div>Hello</div>
+      <div>Hello!!!</div>
+        {isVisible &&<Playlists/>}
     </>
   )
+}
+
+const Playlists = () => {
+    const query = useQuery({
+        queryKey: ["playlists"],
+        queryFn:  () => client.GET("/playlists")
+    })
+
+    return     <ul>
+        {query.data?.data?.data.map((playlist) => (
+            <li key={playlist.id}>{playlist.attributes.title}</li>))}
+    </ul>
 }
 
 export default App
