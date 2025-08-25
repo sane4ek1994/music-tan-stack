@@ -1,9 +1,9 @@
 import {createRoot} from 'react-dom/client'
-import './reset.css'
-import './index.css'
-import App from '../../App.tsx'
+import '../styles/reset.css'
+import '../styles/index.css'
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
+import App from "../../App.tsx";
 
 
 const queryClient = new QueryClient(
