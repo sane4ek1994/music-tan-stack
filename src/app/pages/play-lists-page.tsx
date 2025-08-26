@@ -1,9 +1,9 @@
 import {useQuery} from "@tanstack/react-query";
-import {client} from "./shared/api/client.ts";
+import {client} from "../../shared/api/client.ts";
 import {useEffect, useState} from "react";
 
-function App() {
-    const [isVisible, setIsVisible] = useState(true)
+function PlayListsPage() {
+    const [isVisible, setIsVisible] = useState(false)
 
     useEffect(() => {
         setInterval(() => {
@@ -31,4 +31,4 @@ const Playlists = () => {
     </ul>
 }
 
-export default App
+export default PlayListsPage
