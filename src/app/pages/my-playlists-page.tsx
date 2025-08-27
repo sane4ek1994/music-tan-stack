@@ -1,12 +1,10 @@
 import { Playlists } from '../features/playlists.tsx'
 
-function PlayListsPage() {
+export const MyPlaylistsPage = () => {
   return (
     <div>
-      <h1>Playlists PAGE</h1>
+      <h1>My Playlists</h1>
       <Playlists />
     </div>
   )
 }
-
-export default PlayListsPage
