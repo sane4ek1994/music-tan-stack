@@ -7,7 +7,7 @@ export const LoginButton = () => {
     mutationFn: async ({ code }: { code: string }) => {
       const response = await client.POST('/auth/login', {
         body: {
-          code,
+          code: code,
           redirectUri: callbackUrl,
           rememberMe: true,
           accessTokenTTL: '1d'
@@ -17,21 +17,24 @@ export const LoginButton = () => {
       if (response.error) {
         throw new Error(response.error.message)
       }
-
       return response.data
+    },
+    onSuccess: data => {
+      localStorage.setItem('music-fun-refresh-token', data.refreshToken)
+      localStorage.setItem('music-fun-access-token', data.accessToken)
     }
   })
 
   const handleLoginClick = () => {
+    window.addEventListener('message', handleOauthMessage)
     window.open(
       `https://musicfun.it-incubator.app/api/1.0/auth/oauth-redirect?callbackUrl=${callbackUrl} `,
       'apihub-oauth2',
       'width=600,height=500'
     )
-    // mutation.mutate({ code: '???' })
   }
 
-  const handleOauthMessage = (event: MessageEvent) => {
+  const handleOauthMessage = async (event: MessageEvent) => {
     window.removeEventListener('message', handleOauthMessage)
     if (event.origin !== document.location.origin) {
       console.warn('origin not match')
@@ -44,7 +47,7 @@ export const LoginButton = () => {
       return
     }
 
-    mutation.mutate({ code })
+    await mutation.mutate({ code })
   }
 
   return <button onClick={handleLoginClick}>Login with APIHUB</button>
