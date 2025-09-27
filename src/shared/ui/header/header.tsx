@@ -11,8 +11,6 @@ export const Header = ({ renderAccountBar }: Props) => (
     <div className={styles.container}>
       <div className={styles.linksBlock}>
         <Link to="/">Playlists</Link>
-        <Link to="/my-playlists">My playlists</Link>
-        <Link to="/oauth/callback">TEMP TANSTACK OAUTH</Link>
       </div>
 
       <div>{renderAccountBar()}</div>
