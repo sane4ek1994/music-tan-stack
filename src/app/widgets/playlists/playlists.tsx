@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
-import { client } from '../../shared/api/client.ts'
-import { Pagination } from '../../shared/ui/pagination/pagination.tsx'
+import { client } from '../../../shared/api/client.ts'
+import { Pagination } from '../../../shared/ui/pagination/pagination.tsx'
 import { useState } from 'react'
+import { DeletePlaylist } from '../../features/playlists/delete-playlist/ui/delete-playlist.tsx'
 
 type Props = {
   userId?: string
@@ -31,9 +32,6 @@ export const Playlists = ({ userId }: Props) => {
     }
   })
 
-  console.log('Status: ' + query.status)
-  console.log('fetchStatus: ' + query.fetchStatus)
-
   if (query.isPending) {
     return <div>Loading...</div>
   }
@@ -62,7 +60,9 @@ export const Playlists = ({ userId }: Props) => {
       <ul>
         {query.isFetching ? '🕧' : ''}
         {query.data.data.map(playlist => (
-          <li key={playlist.id}>{playlist.attributes.title}</li>
+          <li key={playlist.id}>
+            {playlist.attributes.title} <DeletePlaylist playlistId={playlist.id} />
+          </li>
         ))}
       </ul>
     </div>

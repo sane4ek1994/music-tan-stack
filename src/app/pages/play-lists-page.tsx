@@ -1,4 +1,4 @@
-import { Playlists } from '../features/playlists.tsx'
+import { Playlists } from '../widgets/playlists/playlists.tsx'
 
 function PlayListsPage() {
   return (

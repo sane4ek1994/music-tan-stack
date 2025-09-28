@@ -17,12 +17,12 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: Infinity,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-      gcTime: 5 * 1000,
-    },
-  },
+      refetchOnMount: true,
+      refetchOnWindowFocus: true,
+      refetchOnReconnect: true,
+      gcTime: 5 * 1000
+    }
+  }
 })
 
 createRoot(document.getElementById('root')!).render(
